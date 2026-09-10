@@ -1,0 +1,162 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Self-hosted Material Symbols (Outlined) icon font */
+@import "material-symbols/outlined.css";
+
+@layer base {
+  :root {
+    --foreground-rgb: 27, 28, 26;
+    --background-rgb: 251, 249, 246;
+    /* Presbyterian violet (repurposed "navy" variables) */
+    --navy-primary: #2f0040;
+    --navy-light: #4a125e;
+    --navy-dark: #210030;
+    /* Amber gold */
+    --gold-primary: #d4a843;
+    --gold-light: #fed65b;
+    --gold-dark: #b8860b;
+    --warm-white: #fbf9f6;
+    --warm-gray: #efeeeb;
+  }
+
+  /* Material Symbols base sizing/weight */
+  .material-symbols-outlined {
+    font-variation-settings:
+      "FILL" 0,
+      "wght" 400,
+      "GRAD" 0,
+      "opsz" 24;
+    vertical-align: middle;
+    user-select: none;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  html,
+  body {
+    overflow-x: hidden;
+    color: rgb(var(--foreground-rgb));
+    background: var(--warm-white);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  p {
+    line-height: 1.7;
+  }
+
+  /* Ensure minimum tap target size on mobile for interactive elements */
+  @media (max-width: 767px) {
+    button,
+    a,
+    input,
+    select,
+    textarea {
+      min-height: 44px;
+    }
+
+    input[type="checkbox"],
+    input[type="radio"] {
+      min-height: 24px;
+      min-width: 24px;
+    }
+  }
+}
+
+@layer components {
+  /* Gradient backgrounds (Presbyterian violet) */
+  .bg-gradient-navy {
+    background: linear-gradient(135deg, #2f0040 0%, #4a125e 50%, #662f79 100%);
+  }
+
+  .bg-gradient-gold {
+    background: linear-gradient(135deg, #d4a843 0%, #fed65b 100%);
+  }
+
+  .bg-gradient-hero {
+    background: linear-gradient(160deg, #210030 0%, #2f0040 40%, #4a125e 100%);
+  }
+
+  /* Glass morphism */
+  .glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .glass-dark {
+    background: rgba(47, 0, 64, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Card styles */
+  .card-elevated {
+    @apply bg-white rounded-2xl shadow-lg border border-gray-100/50 transition-all duration-300;
+  }
+
+  .card-elevated:hover {
+    @apply shadow-card-hover -translate-y-1;
+  }
+
+  /* Gold accent border */
+  .border-gold-accent {
+    border-image: linear-gradient(135deg, #d4a843, #f5c542) 1;
+  }
+
+  /* Text gradient */
+  .text-gradient-gold {
+    background: linear-gradient(135deg, #d4a843 0%, #f5c542 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Shimmer effect for loading states */
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.3) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s linear infinite;
+  }
+
+  /* Decorative dot pattern */
+  .dot-pattern {
+    background-image: radial-gradient(circle, rgba(212, 168, 67, 0.15) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  /* Convenience icon class: inline Material Symbol sized to text */
+  .icon {
+    font-family: "Material Symbols Outlined";
+    font-weight: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}

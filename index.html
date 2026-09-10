@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      MTMKay Technology, Consulting & Real Estate | Cybersecurity, Cloud & Software
+      Training in Kumba, SouthWest Region
+    </title>
+
+    <!-- Primary SEO -->
+    <meta
+      name="description"
+      content="MTMKay is Kumba's leading IT Consulting, Tech Training & Real Estate firm. We offer cybersecurity, web development, and a premium Work Café. Book today!"
+    />
+    <meta
+      name="keywords"
+      content="Technology Kumba, IT Consulting Kumba, Real Estate Kumba, Cybersecurity Training Kumba, Cloud Computing Kumba, Web Development Training, MTMKay Consultancy, Work Cafe"
+    />
+    <meta name="author" content="MTMKay Technology, Consulting & Real Estate" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://www.mtmkay.com/" />
+
+    <!-- Geo Targeting -->
+    <meta name="geo.region" content="CM" />
+    <meta name="geo.placename" content="Cameroon" />
+
+    <!-- Theme -->
+    <meta name="theme-color" content="#1D4ED8" />
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <!-- <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" /> -->
+
+    <!-- Open Graph (Facebook, LinkedIn, WhatsApp) -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Unlock Your Future in Tech with MTMKay"
+    />
+    <meta
+      property="og:description"
+      content="MTMKay - Your partner for Technology, Consulting & Real Estate solutions in Kumba. Expert IT services and property offerings."
+    />
+    <meta property="og:url" content="https://www.mtmkay.com" />
+    <meta
+      property="og:image"
+      content="https://www.mtmkay.com/mtmkay_logo.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="MTMKay Technology, Consulting & Real Estate" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Unlock Your Future in Tech with MTMKay"
+    />
+    <meta
+      name="twitter:description"
+      content="Technology, Consulting & Real Estate solutions in Kumba. IT services and property offerings."
+    />
+    <meta
+      name="twitter:image"
+      content="https://www.mtmkay.com/mtmkay_logo.png"
+    />
+
+    <!-- Preconnect & Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Structured Data (SEO Booster) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "MTMKay Technology, Consulting & Real Estate",
+        "url": "https://www.mtmkay.com",
+        "logo": "https://www.mtmkay.com/mtmkay_logo.png",
+        "description": "Leading Technology, Consulting & Real Estate firm in Kumba offering IT solutions and property services.",
+        "areaServed": [
+          {
+            "@type": "Country",
+            "name": "Cameroon"
+          },
+          {
+            "@type": "Place",
+            "name": "Worldwide"
+          }
+        ]
+      }
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: {
+                DEFAULT: "#1D4ED8",
+                light: "#3B82F6",
+                dark: "#1E3A8A",
+              },
+              secondary: "#F59E0B",
+              accent: "#10B981",
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
+            animation: {
+              "fade-in": "fadeIn 0.5s ease-in-out",
+              "slide-in-up": "slideInUp 0.5s ease-in-out",
+            },
+            keyframes: {
+              fadeIn: {
+                "0%": { opacity: "0" },
+                "100%": { opacity: "1" },
+              },
+              slideInUp: {
+                "0%": { transform: "translateY(20px)", opacity: "0" },
+                "100%": { transform: "translateY(0)", opacity: "1" },
+              },
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- Print Styles for Capabilities Statement -->
+    <style>
+      @media print {
+        /* Hide elements not needed for print */
+        nav,
+        footer,
+        button,
+        .no-print {
+          display: none !important;
+        }
+        
+        /* Ensure content fits on page */
+        section {
+          page-break-inside: avoid;
+          padding: 20px 0;
+        }
+        
+        /* Optimize for print */
+        body {
+          font-size: 12pt;
+          line-height: 1.5;
+          color: #000;
+          background: #fff;
+        }
+        
+        /* Ensure images print properly */
+        img {
+          max-width: 100%;
+          print-color-adjust: exact;
+          -webkit-print-color-adjust: exact;
+        }
+        
+        /* Card backgrounds */
+        .bg-primary,
+        .bg-primary-dark {
+          print-color-adjust: exact;
+          -webkit-print-color-adjust: exact;
+        }
+        
+        /* Page margins */
+        @page {
+          margin: 0.5in;
+          size: letter;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50 text-gray-800">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>

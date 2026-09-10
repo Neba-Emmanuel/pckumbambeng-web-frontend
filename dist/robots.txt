@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Block unnecessary system paths (optional safety)
+Disallow: /node_modules/
+Disallow: /.git/
+Disallow: /dist/
+
+# Sitemap location
+Sitemap: https://www.mtmkay.com/sitemap.xml
