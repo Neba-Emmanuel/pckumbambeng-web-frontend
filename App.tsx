@@ -7,29 +7,29 @@ import Preloader from "./src/components/shared/Preloader";
 import { AuthContext } from "./src/components/context/authContext";
 
 // Lazy-loaded Public Pages
-const Home = lazy(() => import("./src/pages/Home"));
-const About = lazy(() => import("./src/pages/About"));
-const Services = lazy(() => import("./src/pages/Services"));
-const Trainings = lazy(() => import("./src/pages/Trainings"));
-const TrainingDetail = lazy(() => import("./src/pages/TrainingDetail"));
-const CourseRegistration = lazy(() => import("./src/pages/CourseRegistration"));
-const Blog = lazy(() => import("./src/pages/Blog"));
-const BlogPostDetail = lazy(() => import("./src/pages/BlogPostDetail"));
-const Contact = lazy(() => import("./src/pages/Contact"));
-const WorkCafe = lazy(() => import("./src/pages/WorkCafe"));
-const NotFound = lazy(() => import("./src/pages/NotFound"));
-const PaymentSuccess = lazy(() => import("./src/pages/PaymentSuccess"));
-const Capabilities = lazy(() => import("./src/pages/CapabilitiesStatement"));
-const Leads = lazy(() => import("./src/pages/Leads"));
+const Home = lazy(() => import("./src/views/Home"));
+const About = lazy(() => import("./src/views/About"));
+const Services = lazy(() => import("./src/views/Services"));
+const Trainings = lazy(() => import("./src/views/Trainings"));
+const TrainingDetail = lazy(() => import("./src/views/TrainingDetail"));
+const CourseRegistration = lazy(() => import("./src/views/CourseRegistration"));
+const Blog = lazy(() => import("./src/views/Blog"));
+const BlogPostDetail = lazy(() => import("./src/views/BlogPostDetail"));
+const Contact = lazy(() => import("./src/views/Contact"));
+const WorkCafe = lazy(() => import("./src/views/WorkCafe"));
+const NotFound = lazy(() => import("./src/views/NotFound"));
+const PaymentSuccess = lazy(() => import("./src/views/PaymentSuccess"));
+const Capabilities = lazy(() => import("./src/views/CapabilitiesStatement"));
+const Leads = lazy(() => import("./src/views/Leads"));
 
 // Lazy-loaded Admin Pages
-const AdminLogin = lazy(() => import("./src/pages/admin/Login"));
-const Dashboard = lazy(() => import("./src/pages/admin/Dashboard"));
-const ManageTrainings = lazy(() => import("./src/pages/admin/ManageTrainings"));
-const ManageBlog = lazy(() => import("./src/pages/admin/ManageBlog"));
-const ManageRegistrations = lazy(() => import("./src/pages/admin/ManageRegistrations"));
-const ViewPayments = lazy(() => import("./src/pages/admin/ViewPayments"));
-const ManageLeads = lazy(() => import("./src/pages/admin/ManageLeads"));
+const AdminLogin = lazy(() => import("./src/views/admin/Login"));
+const Dashboard = lazy(() => import("./src/views/admin/Dashboard"));
+const ManageTrainings = lazy(() => import("./src/views/admin/ManageTrainings"));
+const ManageBlog = lazy(() => import("./src/views/admin/ManageBlog"));
+const ManageRegistrations = lazy(() => import("./src/views/admin/ManageRegistrations"));
+const ViewPayments = lazy(() => import("./src/views/admin/ViewPayments"));
+const ManageLeads = lazy(() => import("./src/views/admin/ManageLeads"));
 
 const App: React.FC = () => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
