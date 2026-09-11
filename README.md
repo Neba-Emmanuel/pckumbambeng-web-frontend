@@ -19,3 +19,28 @@ The active Next.js application lives in `app/`, with shared code in
 The older Vite application is retained in `App.tsx`, `index.tsx`, and `src/`.
 Its screens live in `src/views/` because Next.js reserves `src/pages/` for routes.
 The Next.js TypeScript configuration checks the active application only.
+
+## Contact form and admin inbox
+
+The public `/contact` page submits to `POST /api/contact` using
+`NEXT_PUBLIC_API_URL`. It collects name, email, optional phone, subject, and
+message. The backend validates submissions and allows five submissions per IP
+per 15 minutes. Messages are saved in MySQL; they are not sent as emails.
+
+Administrators can read submissions at `/admin/contact-messages` through the
+Contact Messages navigation item. Its API, `GET /api/admin/contact-messages`,
+requires an administrator session and supports `?page=1` (20 messages per page).
+
+Before starting an updated backend, run `npm run migrate` from `backend/` to
+create the contact table. Restart the backend to load new routes. Ensure its
+`CORS_ORIGIN` matches the frontend's actual origin, including its port.
+
+The map uses a Google Maps search for the church's listed address; update the
+`mapQuery` in the contact page if a verified map location becomes available.
+
+To check the contact API with a mocked database, run from `backend/`:
+
+```sh
+npm run build
+node --test tests/contact.test.cjs
+```

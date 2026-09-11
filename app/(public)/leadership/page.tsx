@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Icon } from '@/components/Icon';
 
-// Replace pending names and group titles with the parish's confirmed roster.
+// Replace pending names and group titles with the Congregation's confirmed roster.
 const leadershipSections = [
   {
     id: 'pastors',
@@ -21,7 +21,7 @@ const leadershipSections = [
     id: 'elders',
     title: 'Kirk Session Elders',
     overline: 'Serving the congregation',
-    description: 'Around 24 elders support the spiritual life, care, and fellowship of our parish.',
+    description: 'Around 24 elders support the spiritual life, care, and fellowship of our Congregation.',
     countLabel: 'About 24 elders',
     icon: 'shield_person',
     gridClass: 'sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4',
@@ -54,11 +54,11 @@ export default function LeadershipPage() {
       <section className="relative overflow-hidden bg-surface-low">
         <div aria-hidden="true" className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full bg-navy-100/60 blur-3xl" />
         <div className="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
-          <nav aria-label="Breadcrumb" className="mb-8 flex items-center gap-2 text-sm text-ink-variant">
+          {/* <nav aria-label="Breadcrumb" className="mb-8 flex items-center gap-2 text-sm text-ink-variant">
             <Link href="/" className="inline-flex items-center hover:text-navy-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-navy-700">Home</Link>
             <span aria-hidden="true" className="text-gold-700">/</span>
             <span aria-current="page" className="font-semibold text-navy-900">Leadership</span>
-          </nav>
+          </nav> */}
           <div className="grid items-center gap-8 lg:grid-cols-12">
             <div className="lg:col-span-7">
               <p className="mb-3 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-gold-700">
@@ -131,9 +131,9 @@ export default function LeadershipPage() {
           </div>
           <div className="flex flex-col items-start justify-center p-6 sm:p-8">
             <h3 className="text-xl font-semibold text-navy-900">Speak with our pastoral team</h3>
-            <p className="mt-3 text-ink-variant">Contact the parish to ask about availability and arrange a conversation with a member of the team.</p>
+            <p className="mt-3 text-ink-variant">Contact the Congregation to ask about availability and arrange a conversation with a member of the team.</p>
             <Link href="/contact" className="mt-6 inline-flex items-center gap-2 rounded-lg bg-navy-900 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-navy-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-navy-700">
-              Contact the parish <Icon name="arrow_forward" className="text-lg" />
+              Contact the Congregation <Icon name="arrow_forward" className="text-lg" />
             </Link>
           </div>
         </div>

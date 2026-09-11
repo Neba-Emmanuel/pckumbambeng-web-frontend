@@ -7,6 +7,7 @@ import { useAuth } from '@/providers/AuthProvider';
 import { Icon } from '@/components/Icon';
 
 const adminNavLinks = [
+  { href: '/admin/contact-messages', label: 'Contact Messages', icon: 'mail' },
   { href: '/admin', label: 'Dashboard', icon: 'dashboard' },
   { href: '/admin/announcements', label: 'Announcements', icon: 'campaign' },
   { href: '/admin/sermons', label: 'Sermons', icon: 'menu_book' },

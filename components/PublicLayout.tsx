@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Icon } from '@/components/Icon';
@@ -20,8 +20,23 @@ const navLinks = [
 export default function PublicLayout({ children }: { children: React.ReactNode }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
+  const [headerHeight, setHeaderHeight] = useState(104);
   const pathname = usePathname();
   const { showPushPrompt, acceptPush, declinePush } = useNotifications();
+
+  useLayoutEffect(() => {
+    const header = headerRef.current;
+    if (!header) return;
+
+    const updateHeaderHeight = () => {
+      setHeaderHeight(header.getBoundingClientRect().height);
+    };
+    updateHeaderHeight();
+    const observer = new ResizeObserver(updateHeaderHeight);
+    observer.observe(header);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,6 +49,7 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
   return (
     <div className="min-h-screen flex flex-col bg-warm-white">
       <header
+        ref={headerRef}
         className={`fixed top-0 left-0 right-0 z-50 transition-shadow duration-300 ${
           scrolled ? 'shadow-lg' : 'shadow-sm'
         }`}
@@ -44,7 +60,7 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
             <div className="flex items-center gap-2 overflow-hidden">
               <Icon name="campaign" className="text-gold-300 text-[16px]" />
               <span className="truncate">
-                Join us this Sunday: 1st Service 7:30 AM (English) | 2nd Service 9:30 AM
+                Join us this Sunday: 1st Service 7:00 AM | 2nd Service 9:30 AM
               </span>
             </div>
             <div className="hidden md:flex items-center gap-3 shrink-0">
@@ -171,8 +187,8 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
         </div>
       </header>
 
-      {/* Spacer for fixed header (announcement bar + nav) */}
-      <div className="h-[104px]" />
+      {/* Match the fixed header as fonts, viewport, and mobile menu change. */}
+      <div aria-hidden="true" className="shrink-0" style={{ height: headerHeight }} />
 
       {/* Anonymous push opt-in banner */}
       {showPushPrompt && (
@@ -261,32 +277,32 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
               <ul className="space-y-2 text-sm text-white/70">
                 <li className="flex justify-between gap-2">
                   <span>1st Service</span>
-                  <span className="text-white">7:30 AM</span>
+                  <span className="text-white">7:00 AM</span>
                 </li>
                 <li className="flex justify-between gap-2">
                   <span>2nd Service</span>
                   <span className="text-white">9:30 AM</span>
                 </li>
                 <li className="flex justify-between gap-2">
-                  <span>Bible Study (Wed)</span>
+                  <span>Bible Study (Thurs)</span>
                   <span className="text-white">5:00 PM</span>
                 </li>
-                <li className="flex justify-between gap-2">
+                {/* <li className="flex justify-between gap-2">
                   <span>Prayers (Fri)</span>
                   <span className="text-white">4:30 PM</span>
-                </li>
+                </li> */}
               </ul>
             </div>
 
             {/* Contact */}
             <div>
               <h4 className="text-sm font-semibold uppercase tracking-wider text-gold-300 mb-4">
-                Parish Secretariat
+                Congregation Secretariat
               </h4>
               <ul className="space-y-3 text-sm text-white/70">
                 <li className="flex items-start gap-2">
                   <Icon name="location_on" className="text-gold-300 text-[18px] shrink-0" />
-                  <span>Kumba-Mbeng Parish, Meme Division, South West Region, Cameroon</span>
+                  <span>Kumba-Mbeng Congregation, Meme Division, South West Region, Cameroon</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <Icon name="mail" className="text-gold-300 text-[18px] shrink-0" />

@@ -3,19 +3,19 @@ import Image from 'next/image';
 import { Icon } from '@/components/Icon';
 
 const serviceSchedule = [
-  { icon: 'wb_sunny', title: '1st Divine Worship', detail: 'English & Choral Liturgy', time: '7:30 AM' },
-  { icon: 'auto_stories', title: 'Sunday School', detail: 'Children & Youth Classes', time: '9:00 AM' },
-  { icon: 'church', title: '2nd Divine Worship', detail: 'Main Parish Assembly', time: '9:30 AM' },
-  { icon: 'menu_book', title: 'Wednesday Bible Study', detail: 'Verse-by-verse Scripture', time: '5:00 PM' },
-  { icon: 'volunteer_activism', title: 'Friday Fasting & Prayer', detail: 'Healing & Deliverance', time: '4:30 PM' },
+  { icon: 'wb_sunny', title: '1st Divine Worship', detail: 'English & Choral Liturgy', time: '7:00 AM' },
+  { icon: 'auto_stories', title: 'Sunday School', detail: 'Children & Youth Classes', time: '7:00 AM & 9:30AM' },
+  { icon: 'church', title: '2nd Divine Worship', detail: 'Main Congregation Assembly', time: '9:30 AM' },
+  { icon: 'menu_book', title: 'Thursday Bible Study', detail: 'Verse-by-verse Scripture', time: '5:00 PM' },
+  // { icon: 'volunteer_activism', title: 'Friday Fasting & Prayer', detail: 'Healing & Deliverance', time: '4:30 PM' },
   { icon: 'diversity_3', title: 'Fellowship Gatherings', detail: 'CYF · CWF · CMF · Choir', time: 'Weekly' },
 ];
 
 const fellowships = [
-  { icon: 'hiking', name: 'Christian Youth Fellowship (CYF)', desc: 'Empowering young believers through scripture, leadership, and choral competitions.', meet: 'Sundays 4:00 PM' },
-  { icon: 'favorite', name: 'Christian Women Fellowship (CWF)', desc: 'The pillar of parish prayer, hospitality, benevolence, and community welfare.', meet: 'Tuesdays 4:00 PM' },
-  { icon: 'shield', name: 'Christian Men Fellowship (CMF)', desc: 'Men dedicated to godly leadership, stewardship, and mentoring the young.', meet: 'Thursdays 5:00 PM' },
-  { icon: 'music_note', name: 'Parish Choirs & Singing Bands', desc: 'From classical Presbyterian hymns to contemporary African choral praise.', meet: 'Fri & Sat rehearsals' },
+  { icon: 'hiking', name: 'Christian Youth Fellowship (CYF)', desc: 'Empowering young believers through scripture, leadership, and choral competitions.', meet: 'Tuesday 4:00 PM' },
+  { icon: 'favorite', name: 'Christian Women Fellowship (CWF)', desc: 'The pillar of Congregation prayer, hospitality, benevolence, and community welfare.', meet: 'Tuesdays 4:00 PM' },
+  { icon: 'shield', name: 'Christian Men Fellowship (CMF)', desc: 'Men dedicated to godly leadership, stewardship, and mentoring the young.', meet: 'Friday 4:00 PM' },
+  { icon: 'music_note', name: 'Congregation Choirs & Singing Bands', desc: 'From classical Presbyterian hymns to contemporary African choral praise.', meet: 'Tues - Sat rehearsals' },
 ];
 
 export default function HomePage() {
@@ -35,19 +35,19 @@ export default function HomePage() {
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-24">
           {/* Upcoming gathering pill */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 mb-8 animate-fade-in">
+          {/* <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 mb-8 animate-fade-in">
             <span className="w-2 h-2 rounded-full bg-gold-300 animate-pulse" />
             <span className="text-sm text-white/85 font-medium">
               Next Divine Worship — Sunday 9:30 AM
             </span>
-          </div>
+          </div> */}
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             {/* Headline + CTAs */}
             <div className="lg:col-span-7 flex flex-col gap-6">
               <div className="flex items-center gap-3 text-gold-300">
                 <span className="text-xs uppercase tracking-widest font-bold">
-                  Kumba-Mbeng Parish Sanctuary
+                  Kumba-Mbeng Congregation
                 </span>
                 <span className="h-0.5 w-12 bg-gold-300/50" />
               </div>
@@ -56,8 +56,8 @@ export default function HomePage() {
                 <span className="text-gradient-gold">Kumba-Mbeng</span>
               </h1>
               <p className="text-lg text-white/75 max-w-2xl leading-relaxed">
-                Presbyterian Church in Cameroon — Kumba-Mbeng Parish. Welcoming all people
-                across Meme Division and beyond to grow in Christ, worship with reverent joy,
+                Presbyterian Church in Cameroon — Kumba-Mbeng Congregation. Welcoming all people
+                across Kumba Presbytery and beyond to grow in Christ, worship with reverent joy,
                 and serve our community with sacrificial love.
               </p>
               <div className="flex flex-wrap items-center gap-4 pt-2">
@@ -78,14 +78,14 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Parish theme card */}
+            {/* Congregation theme card */}
             {/* <div className="lg:col-span-5">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-navy-800/70 backdrop-blur-md p-8 text-white border border-white/10">
                 <div className="absolute -right-10 -bottom-10 w-48 h-48 rounded-full bg-gold-400/20 blur-2xl pointer-events-none" />
                 <div className="relative flex flex-col gap-4">
                   <div className="flex items-center justify-between">
                     <span className="px-3 py-1 rounded-full bg-gradient-gold text-navy-900 text-xs font-bold uppercase tracking-wider">
-                      Parish Theme
+                      Congregation Theme
                     </span>
                     <span className="italic text-gold-300 text-sm">2 Corinthians 5:7</span>
                   </div>
@@ -109,10 +109,10 @@ export default function HomePage() {
           {/* Stats strip */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-14">
             {[
-              { n: '60+', l: 'Years of Gospel Witness' },
-              { n: '4', l: 'Active Fellowships' },
+              { n: '50+', l: 'Years of Gospel Witness' },
+              { n: '12', l: 'Active Fellowships' },
               { n: '2', l: 'Sunday Worship Services' },
-              { n: '1,200+', l: 'Faithful Parishioners' },
+              { n: '1,200+', l: 'Faithful Congregants' },
             ].map((s) => (
               <div key={s.l} className="p-4 rounded-xl bg-white/5 border border-white/10">
                 <span className="block text-3xl font-bold text-gold-300 leading-none mb-1">{s.n}</span>
@@ -186,7 +186,7 @@ export default function HomePage() {
                 </span>
                 <h3 className="text-2xl font-bold">Faith That Overcomes the Storm</h3>
                 <div className="p-4 rounded-xl bg-white/5 border border-white/10 space-y-1 text-sm">
-                  <div className="flex justify-between"><span className="text-gold-300 font-semibold">Preacher:</span><span>Rev. Parish Pastor</span></div>
+                  <div className="flex justify-between"><span className="text-gold-300 font-semibold">Preacher:</span><span>Rev. Congregation Pastor</span></div>
                   <div className="flex justify-between"><span className="text-gold-300 font-semibold">Scripture:</span><span className="italic">Mark 4:35–41</span></div>
                 </div>
                 <p className="text-white/80 leading-relaxed">
