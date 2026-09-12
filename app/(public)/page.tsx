@@ -12,10 +12,10 @@ const serviceSchedule = [
 ];
 
 const fellowships = [
-  { icon: 'hiking', name: 'Christian Youth Fellowship (CYF)', desc: 'Empowering young believers through scripture, leadership, and choral competitions.', meet: 'Tuesday 4:00 PM' },
-  { icon: 'favorite', name: 'Christian Women Fellowship (CWF)', desc: 'The pillar of Congregation prayer, hospitality, benevolence, and community welfare.', meet: 'Tuesdays 4:00 PM' },
-  { icon: 'shield', name: 'Christian Men Fellowship (CMF)', desc: 'Men dedicated to godly leadership, stewardship, and mentoring the young.', meet: 'Friday 4:00 PM' },
-  { icon: 'music_note', name: 'Congregation Choirs & Singing Bands', desc: 'From classical Presbyterian hymns to contemporary African choral praise.', meet: 'Tues - Sat rehearsals' },
+  { img: '/cyf-logo.png', name: 'Christian Youth Fellowship (CYF)', desc: 'Empowering young believers through scripture, leadership, and choral competitions.', meet: 'Tuesday 4:00 PM' },
+  { img: '/cwf-logo.jpeg', name: 'Christian Women Fellowship (CWF)', desc: 'The pillar of Congregation prayer, hospitality, benevolence, and community welfare.', meet: 'Tuesdays 4:00 PM' },
+  { img: '/cmf-logo.jpeg', name: 'Christian Men Fellowship (CMF)', desc: 'Men dedicated to godly leadership, stewardship, and mentoring the young.', meet: 'Friday 4:00 PM' },
+  { img: '/lay-training-logo.jpg', name: 'Congregation Choirs & Singing Bands', desc: 'From classical Presbyterian hymns to contemporary African choral praise.', meet: 'Tues - Sat rehearsals' },
 ];
 
 export default function HomePage() {
@@ -222,7 +222,7 @@ export default function HomePage() {
               <div key={f.name} className="card-elevated p-8 flex flex-col justify-between">
                 <div>
                   <div className="w-12 h-12 rounded-full bg-navy-100 flex items-center justify-center text-navy-800 mb-4">
-                    <Icon name={f.icon} className="text-[24px]" />
+                    <Image src={f.img} alt={f.name} width={32} height={32} className="text-[24px] rounded-full" />
                   </div>
                   <h3 className="font-bold text-lg text-navy-900 mb-2">{f.name}</h3>
                   <p className="text-gray-600 text-sm leading-relaxed mb-4">{f.desc}</p>
