@@ -11,6 +11,7 @@ interface Event {
   event_date: string;
   location: string;
   description: string;
+  detail_page_status?: 'off' | 'not_started' | 'draft' | 'published';
 }
 
 export default function AdminEventsPage() {
@@ -23,7 +24,7 @@ export default function AdminEventsPage() {
 
   const fetchEvents = useCallback(async () => {
     try {
-      const res = await fetch(`${API_URL}/api/events`, {
+      const res = await fetch(`${API_URL}/api/admin/events`, {
         credentials: 'include',
       });
       if (res.ok) {
@@ -123,6 +124,7 @@ export default function AdminEventsPage() {
                   <tr key={event.id} className={`hover:bg-gray-50 ${isPast ? 'opacity-60' : ''}`}>
                     <td className="px-4 py-3 text-sm text-gray-900 font-medium">
                       {event.title}
+                      <span className="mt-1 block text-xs text-navy-600">{({ off: 'Regular event', not_started: 'Page: Not started', draft: 'Page: Draft', published: 'Page: Published' })[event.detail_page_status || 'off']}</span>
                       {isPast && (
                         <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs bg-gray-100 text-gray-500">
                           Past

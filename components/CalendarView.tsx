@@ -1,8 +1,10 @@
 'use client';
 
+import { EventPageLink, EventPageSettings } from '@/components/EventPageLink';
+
 import { useState, useMemo } from 'react';
 
-interface CalendarEvent {
+interface CalendarEvent extends EventPageSettings {
   id: number;
   title: string;
   event_date: string;
@@ -172,6 +174,7 @@ export function CalendarView({ events, year, month, onMonthChange }: CalendarVie
                     {event.description && (
                       <p className="mt-2 text-sm text-gray-700">{event.description}</p>
                     )}
+                    <EventPageLink event={event} />
                   </li>
                 );
               })}

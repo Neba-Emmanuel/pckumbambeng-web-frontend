@@ -1,10 +1,12 @@
 'use client';
 
+import { EventPageLink, EventPageSettings } from '@/components/EventPageLink';
+
 import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { apiGetList } from '@/lib/api-client';
 
-interface ArchiveEvent {
+interface ArchiveEvent extends EventPageSettings {
   id: number;
   title: string;
   event_date: string;
@@ -90,6 +92,7 @@ export default function EventsArchivePage() {
             {events.map((event) => (
               <li key={event.id} className="px-6 py-4">
                 <h2 className="text-lg font-medium text-gray-900">{event.title}</h2>
+                <EventPageLink event={event} />
                 <div className="mt-1 flex flex-wrap gap-x-4 text-sm text-gray-500">
                   <span>
                     {new Date(event.event_date).toLocaleDateString('en-US', {
