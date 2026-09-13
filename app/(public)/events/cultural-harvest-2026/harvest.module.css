@@ -1,0 +1,9 @@
+.page { --clay: #aa5133; --cream: #fcf5e6; background: var(--cream); color: #252943; }
+.hero { background: #22273e; color: var(--cream); position: relative; overflow: hidden; }
+.hero::before { content: ''; position: absolute; inset: 0; opacity: .1; background-image: repeating-linear-gradient(0deg, transparent 0 5px, #eac788 5px 6px), repeating-linear-gradient(90deg, transparent 0 5px, #eac788 5px 6px); pointer-events: none; }
+.serif { font-family: Georgia, 'Times New Roman', serif; font-weight: 400; }
+.strip { height: 18px; background-color: #aa5133; background-image: linear-gradient(135deg, #edc778 25%, transparent 25%),linear-gradient(225deg,#edc778 25%,transparent 25%),linear-gradient(45deg,#22273e 25%,transparent 25%),linear-gradient(315deg,#22273e 25%,transparent 25%); background-position: 12px 0,12px 0,0 0,0 0; background-size: 24px 18px; }
+.art { border-radius: 48% 48% 8px 8px; background: #e2b86f; box-shadow: 16px 16px 0 #ffffff0b; }
+.button { display: inline-flex; min-height: 48px; align-items:center; justify-content:center; gap:8px; padding: 12px 22px; border-radius: 4px; font-weight: 600; background: #ecc67e; color:#252943; }
+.button:focus-visible { outline:3px solid #aa5133; outline-offset:4px; }
+.button:hover { background:#f6dba5; }

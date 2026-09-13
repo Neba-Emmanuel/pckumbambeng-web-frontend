@@ -44,3 +44,15 @@ To check the contact API with a mocked database, run from `backend/`:
 npm run build
 node --test tests/contact.test.cjs
 ```
+
+## Facebook embed trial
+
+The News page currently embeds the public CBS Radio Buea and CBS Radio Bamenda
+Facebook timelines without API tokens. Facebook controls the content inside each
+frame; browser settings and Facebook restrictions can affect whether posts load.
+Each section includes a direct page link as a fallback.
+
+To restore the previous API-backed News page, set `FACEBOOK_NEWS_MODE=api` in
+`.env.local` and restart development (or rebuild for production). Remove that
+setting to return to the embeds. The original feed is preserved in
+`components/LegacyFacebookFeed.tsx`; backend sources and polling are unchanged.
