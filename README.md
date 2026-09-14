@@ -56,3 +56,5 @@ To restore the previous API-backed News page, set `FACEBOOK_NEWS_MODE=api` in
 `.env.local` and restart development (or rebuild for production). Remove that
 setting to return to the embeds. The original feed is preserved in
 `components/LegacyFacebookFeed.tsx`; backend sources and polling are unchanged.
+
+Deployment setup: see [DEPLOYMENT.md](./DEPLOYMENT.md).

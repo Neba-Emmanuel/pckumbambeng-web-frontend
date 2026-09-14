@@ -1,10 +1,12 @@
 'use client';
 
+import { API_BASE_URL } from '@/lib/api-base';
+
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+const API_URL = API_BASE_URL;
 
 interface Announcement {
   id: number;
@@ -140,7 +142,7 @@ export default function AnnouncementDetailPage() {
           <div className="mt-6 border-t border-gray-200 pt-4">
             <p className="text-sm font-medium text-gray-700">Attachment:</p>
             <a
-              href={`${API_URL}${announcement.attachment_path}`}
+              href={announcement.attachment_path.startsWith('https://') ? announcement.attachment_path : `${API_URL}/uploads/${announcement.attachment_path.replace(/^\/?uploads\//, '')}`}
               target="_blank"
               rel="noopener noreferrer"
               className="mt-1 inline-flex items-center text-sm text-navy-600 hover:text-navy-500"

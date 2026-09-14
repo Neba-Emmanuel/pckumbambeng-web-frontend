@@ -1,12 +1,16 @@
 'use client';
 
+import { appendUpload } from '@/lib/upload-file';
+
+import { API_BASE_URL } from '@/lib/api-base';
+
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+const API_URL = API_BASE_URL;
 
 const announcementSchema = z.object({
   title: z.string().min(1, 'Title is required').max(200, 'Title must be 200 characters or less'),
@@ -64,7 +68,7 @@ export default function CreateAnnouncementPage() {
       formData.append('title', data.title);
       formData.append('body', data.body);
       if (attachment) {
-        formData.append('attachment', attachment);
+        await appendUpload(formData, 'attachment', attachment);
       }
 
       const res = await fetch(`${API_URL}/api/admin/announcements`, {

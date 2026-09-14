@@ -23,3 +23,11 @@ dist-ssr
 *.sln
 *.sw?
 *.next/
+
+# Deployment credentials and local environment files
+.vercel/
+.env
+.env.*
+!.env.example
+
+.next-vercel/

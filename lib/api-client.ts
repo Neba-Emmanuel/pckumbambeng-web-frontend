@@ -1,3 +1,4 @@
+import { API_BASE_URL } from '@/lib/api-base';
 /**
  * Shared fetch helper for the PC Kumba-Mbeng API.
  *
@@ -11,7 +12,7 @@
  * gets an empty list or the whole envelope object.
  */
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+const API_URL = API_BASE_URL;
 
 /** Pagination metadata returned under `meta` for list endpoints. */
 export interface PaginationMeta {

@@ -1,10 +1,12 @@
 'use client';
 
+import { API_BASE_URL } from '@/lib/api-base';
+
 import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { CalendarView } from '@/components/CalendarView';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+const API_URL = API_BASE_URL;
 
 interface CalendarEvent {
   id: number;

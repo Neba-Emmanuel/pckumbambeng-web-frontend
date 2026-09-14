@@ -1,12 +1,16 @@
 'use client';
 
+import { appendUpload } from '@/lib/upload-file';
+
+import { API_BASE_URL } from '@/lib/api-base';
+
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+const API_URL = API_BASE_URL;
 
 const sermonSchema = z
   .object({
@@ -98,7 +102,7 @@ export default function CreateSermonPage() {
       }
 
       if (audioFile) {
-        formData.append('audio', audioFile);
+        await appendUpload(formData, 'audio', audioFile);
       }
 
       const res = await fetch(`${API_URL}/api/admin/sermons`, {
