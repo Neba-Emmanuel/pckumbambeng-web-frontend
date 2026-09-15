@@ -1,17 +1,19 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Icon } from '@/components/Icon';
 import { HarvestDetails, ShareHarvest } from './HarvestDetails';
 import styles from './harvest.module.css';
+import { HarvestCard } from './HarvestCard';
 
 export const metadata: Metadata = {
   title: 'Cultural Harvest 2026 | PC Kumba-Mbeng',
   description: 'A celebration of faith, heritage and thanksgiving. Join Cultural Harvest 2026 at Presbyterian Church Kumba-Mbeng.',
-  openGraph: { title: 'Cultural Harvest 2026 · PC Kumba-Mbeng', description: 'Many cultures. One grateful heart. Celebrate with our congregation.', type: 'website' },
+  openGraph: { title: 'Cultural Harvest 2026 · PC Kumba-Mbeng', description: 'Filled with the bread of Life... We will give with joyful hearts. John 6:30–35.', type: 'website' },
 };
 
 function HarvestArtwork() {
-  return <svg viewBox="0 0 440 510" role="img" aria-label="Illustration of a woven harvest basket, leaves and grain, framed by geometric textile patterns" className={`w-full ${styles.art}`}>
+  return <svg viewBox="0 0 440 510" role="img" aria-label="Illustration of a harvest basket, grain, traditional drum and gong framed by textile patterns" className={`w-full ${styles.art}`}>
     <defs>
       <pattern id="harvest-weave" width="20" height="16" patternUnits="userSpaceOnUse"><rect width="20" height="16" fill="#9b5638" /><path d="M0 2h20M0 10h20" stroke="#e0a86c" strokeWidth="3" /><path d="M5 0v8m10 0v8" stroke="#522f2a" strokeWidth="2" /></pattern>
       <pattern id="harvest-trim" width="40" height="40" patternUnits="userSpaceOnUse"><rect width="40" height="40" fill="#29344a" /><path d="M20 3L37 20 20 37 3 20Z" fill="none" stroke="#ebc780" strokeWidth="3" /><path d="M20 13l7 7-7 7-7-7Z" fill="#bd6844" /></pattern>
@@ -28,6 +30,20 @@ function HarvestArtwork() {
     <path d="M103 319Q218 358 333 319l-23 80Q217 431 126 399Z" fill="url(#harvest-weave)" stroke="#573b30" strokeWidth="4" />
     <path d="M104 319q114 40 229 0" fill="none" stroke="#edc784" strokeWidth="9" />
     <path d="M72 92l9 9-9 9-9-9Zm296 0 9 9-9 9-9-9Z" fill="#29344a" />
+    <g transform="translate(70 330) rotate(-12)">
+      <path d="M-34-38h68L17 21l7 48q-24 10-48 0l7-48Z" fill="#985329" stroke="#4b2b1d" strokeWidth="3" />
+      <path d="M-27-36-11 20-17 66M-9-36-4 20-6 69M9-36 4 20 6 69M27-36 11 20 17 66" fill="none" stroke="#f1cf8a" strokeWidth="2" />
+      <ellipse cy="-38" rx="36" ry="13" fill="#ebd5ad" stroke="#b43820" strokeWidth="5" />
+      <path d="M-17 19h34v10h-34Z" fill="#0c4a3e" />
+    </g>
+    <g transform="translate(359 281)">
+      <path d="M-15-30q15-57 30 0" fill="none" stroke="#80512a" strokeWidth="3" />
+      <circle r="44" fill="#d99e3d" stroke="#86521f" strokeWidth="3" />
+      <circle r="35" fill="none" stroke="#f4d287" strokeWidth="2" />
+      <circle r="13" fill="#ae6e2a" stroke="#ebbf64" strokeWidth="3" />
+      <path d="M-22 65 26 19" stroke="#5e3421" strokeWidth="5" strokeLinecap="round" />
+      <ellipse cx="26" cy="19" rx="8" ry="12" transform="rotate(40 26 19)" fill="#0c4a3e" />
+    </g>
     <text x="220" y="480" textAnchor="middle" fontFamily="Georgia, serif" fontSize="16" letterSpacing="4" fill="#29344a">ROOTED IN GRATITUDE</text>
   </svg>;
 }
@@ -36,16 +52,29 @@ export default function CulturalHarvestPage() {
   return <div className={styles.page}>
     <section className={styles.hero}>
       <div className="relative mx-auto max-w-6xl px-4 pb-14 pt-8 sm:px-6 lg:px-8">
-        <Link href="/events" className="inline-flex min-h-[44px] items-center gap-2 text-sm text-[#efdab1] hover:underline"><Icon name="arrow_back" className="text-lg" />All church events</Link>
-        <div className="mt-8 grid items-center gap-12 lg:grid-cols-[1.2fr_1fr] lg:gap-16">
+        <Link href="/events" className="inline-flex min-h-[44px] items-center gap-2 text-sm text-[#71452a] hover:underline"><Icon name="arrow_back" className="text-lg" />All church events</Link>
+        <div className="mt-6 grid items-center gap-12 lg:grid-cols-[1.2fr_1fr] lg:gap-16">
           <div>
-            <p className="mb-6 text-xs font-semibold uppercase tracking-[0.22em] text-[#edc780]">Presbyterian Church · Kumba-Mbeng</p>
-            <h1 className={`${styles.serif} text-6xl leading-[0.98] sm:text-7xl lg:text-8xl`}>Cultural<br /><span className="italic text-[#edc780]">Harvest</span><span className="mt-4 block text-4xl tracking-widest sm:text-5xl">2026</span></h1>
-            <p className={`${styles.serif} mt-8 text-2xl sm:text-3xl`}>Many cultures.<br />One grateful heart.</p>
-            <p className="mt-5 max-w-md text-base leading-relaxed text-[#fcf5e6]/75">Come with your heritage. Come with your thanksgiving. Let us gather in faith and celebrate the beauty of belonging.</p>
-            <div className="mt-8 flex flex-wrap gap-3"><a href="#celebration-details" className={styles.button}>Plan your visit<Icon name="arrow_downward" className="text-lg" /></a><a href="#invitation" className="inline-flex min-h-[48px] items-center rounded border border-[#fcf5e6]/30 px-5 py-3 font-semibold hover:bg-white/10">Invite someone</a></div>
+            <div className="mb-7 flex items-center gap-4">
+              <Image src="/pcc-logo.png" alt="Presbyterian Church in Cameroon logo" width={64} height={64} className="rounded-full" />
+              <p className="text-xs font-bold uppercase leading-relaxed tracking-[0.16em] text-[#0b0e4a]">Presbyterian Church<br /><span className="text-[#885023]">Kumba-Mbeng</span></p>
+            </div>
+            <h1 className={styles.heroTitle}>Cultural<br />Harvest<span className={styles.heroYear}>2026</span></h1>
+            <div className="mt-7 border-l-4 border-[#e08a1e] pl-5">
+              <p className={`${styles.serif} text-2xl leading-snug text-[#0c4a3e] sm:text-3xl`}>Filled with the bread of Life...<br />We will give with joyful hearts.</p>
+              <p className="mt-3 text-xs font-bold uppercase tracking-[0.18em] text-[#885023]">John 6:30–35</p>
+            </div>
+            <p className="mt-6 max-w-md text-base leading-relaxed text-[#535361]">Bring your culture. Bring your gratitude. Join us in worship, fellowship and joyful giving.</p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a href="#ill-be-there" className={styles.heroPrimary}>I’ll be there · Create my card<Icon name="arrow_forward" className="text-lg" /></a>
+              <a href="#celebration-details" className={styles.heroSecondary}>Plan your visit<Icon name="arrow_downward" className="text-lg" /></a>
+            </div>
           </div>
-          <div className="mx-auto w-full max-w-[400px] lg:max-w-none"><HarvestArtwork /><p className="mt-6 text-center text-xs uppercase tracking-[0.2em] text-[#efdab1]">Faith · Heritage · Thanksgiving</p></div>
+          <div className="relative mx-auto w-full max-w-[400px] lg:max-w-none">
+            <p className="mb-5 text-center text-xs font-bold uppercase tracking-[0.24em] text-[#885023]">Many cultures. One family in Christ.</p>
+            <HarvestArtwork />
+            <div className="relative mx-auto -mt-4 w-fit rounded-full bg-[#0b0e4a] px-6 py-3 text-center text-xs font-semibold uppercase tracking-[0.15em] text-white shadow-lg">Faith · Heritage · Thanksgiving</div>
+          </div>
         </div>
       </div>
       <div className={styles.strip} aria-hidden="true" />
@@ -57,7 +86,7 @@ export default function CulturalHarvestPage() {
       <HarvestDetails />
     </section>
 
-    <section className="bg-[#efe4ce] px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
+    {/* <section className="bg-[#efe4ce] px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
       <div className="mx-auto max-w-6xl">
         <div className="grid gap-6 md:grid-cols-2 md:gap-16"><div><p className="text-xs font-bold uppercase tracking-[0.2em] text-[#aa5133]">Our heritage, our fellowship</p><h2 className={`${styles.serif} mt-4 text-4xl sm:text-5xl`}>Different expressions.<br /><span className="italic">A shared thanksgiving.</span></h2></div><p className="self-end text-lg leading-relaxed text-[#535361]">Cultural Harvest brings our expressions of heritage into a shared act of worship. Our clothing, our voices and our gratitude tell a story of community, with Christ at the centre.</p></div>
         <div className="mt-10 grid gap-5 md:grid-cols-3">{[
@@ -75,7 +104,9 @@ export default function CulturalHarvestPage() {
         ['Do I need cultural attire?', 'Cultural attire is a lovely way to celebrate your heritage, but you are welcome in whatever you feel comfortable wearing for worship.'],
         ['Where can I find the service programme?', 'Please contact the parish team for the confirmed order of service and any arrangements for groups.'],
       ].map(([question, answer]) => <details key={question} className="py-5"><summary className="cursor-pointer py-2 text-lg font-semibold">{question}</summary><p className="mt-3 text-sm leading-relaxed text-[#535361]">{answer}</p></details>)}</div>
-    </section>
+    </section> */}
+
+    <HarvestCard />
 
     <section id="invitation" className="scroll-mt-36 bg-[#aa5133] px-4 py-14 text-[#fcf5e6] sm:px-6 sm:py-20 lg:px-8"><div className="mx-auto max-w-3xl text-center"><p className="text-xs font-semibold uppercase tracking-[0.2em]">There is a place for you</p><h2 className={`${styles.serif} mt-5 text-4xl sm:text-6xl`}>Thanksgiving is richer<br /><span className="italic">when we share it.</span></h2><p className="mx-auto mb-8 mt-5 max-w-xl leading-relaxed text-[#fcf5e6]/85">Pass the invitation to a friend or family member. Let us celebrate faith and heritage together at Cultural Harvest 2026.</p><ShareHarvest /></div></section>
     <div className={styles.strip} aria-hidden="true" />
