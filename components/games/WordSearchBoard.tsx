@@ -21,15 +21,20 @@ export function WordSearchBoard() {
   const [difficulty, setDifficulty] = useState('medium');
   const [puzzle, setPuzzle] = useState<WordSearchPuzzle | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [found, setFound] = useState<Set<string>>(new Set());
   const [foundCells, setFoundCells] = useState<Set<string>>(new Set());
   const [start, setStart] = useState<Cell | null>(null);
   const [elapsed, setElapsed] = useState(0);
   const [complete, setComplete] = useState(false);
   const startTimeRef = useRef<number>(0);
+  const requestRef = useRef(0);
 
   const newPuzzle = useCallback(async (diff: string) => {
+    const request = ++requestRef.current;
     setLoading(true);
+    setError(null);
+    setPuzzle(null);
     setFound(new Set());
     setFoundCells(new Set());
     setStart(null);
@@ -39,25 +44,30 @@ export function WordSearchBoard() {
       const data = await apiGet<WordSearchPuzzle>(
         `/api/games/word-search?difficulty=${diff}`
       );
+      if (request !== requestRef.current) return;
       setPuzzle(data);
       startTimeRef.current = Date.now();
+    } catch {
+      if (request === requestRef.current) setError('The word search could not load. Try again, or choose one of the other games.');
     } finally {
-      setLoading(false);
+      if (request === requestRef.current) setLoading(false);
     }
   }, []);
 
   useEffect(() => {
+    const pendingRequest = requestRef;
     newPuzzle(difficulty);
+    return () => { pendingRequest.current++; };
   }, [newPuzzle, difficulty]);
 
   // Timer
   useEffect(() => {
-    if (loading || complete) return;
+    if (loading || complete || !puzzle) return;
     const t = setInterval(() => {
       setElapsed(Math.floor((Date.now() - startTimeRef.current) / 1000));
     }, 1000);
     return () => clearInterval(t);
-  }, [loading, complete]);
+  }, [loading, complete, puzzle]);
 
   // Detect completion (client-side only; nothing persisted).
   useEffect(() => {
@@ -112,7 +122,7 @@ export function WordSearchBoard() {
     `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
 
   if (loading) return <p className="text-navy-500">Generating puzzle...</p>;
-  if (!puzzle) return <p className="text-red-600">Could not load puzzle.</p>;
+  if (!puzzle) return <div><p role="alert" className="text-red-700">{error || 'Could not load puzzle.'}</p><button className="mt-4 min-h-[44px] rounded-xl bg-navy-900 px-5 py-3 text-white" onClick={() => newPuzzle(difficulty)}>Try again</button></div>;
 
   return (
     <div>

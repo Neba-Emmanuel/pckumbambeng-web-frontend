@@ -1,52 +1,8 @@
 import Link from 'next/link';
 import { Icon } from '@/components/Icon';
+import { LeadershipPortrait } from '@/components/LeadershipPortrait';
+import leadershipSections from '../data';
 
-// Replace pending names and group titles with the Congregation's confirmed roster.
-const leadershipSections = [
-  {
-    id: 'pastors',
-    title: 'Reverend Pastors',
-    overline: 'The pastoral ministry',
-    description: 'Our two reverend pastors guide the congregation through preaching, prayer, and pastoral care.',
-    countLabel: '2 pastors',
-    icon: 'church',
-    gridClass: 'sm:grid-cols-2',
-    members: Array.from({ length: 2 }, (_, index) => ({
-      id: `pastor-${index + 1}`,
-      role: `Reverend Pastor ${index + 1}`,
-      name: 'Name to be announced',
-    })),
-  },
-  {
-    id: 'elders',
-    title: 'Kirk Session Elders',
-    overline: 'Serving the congregation',
-    description: 'Around 24 elders support the spiritual life, care, and fellowship of our Congregation.',
-    countLabel: 'About 24 elders',
-    icon: 'shield_person',
-    gridClass: 'sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4',
-    members: Array.from({ length: 24 }, (_, index) => ({
-      id: `elder-${index + 1}`,
-      role: `Elder ${String(index + 1).padStart(2, '0')}`,
-      name: 'Name to be announced',
-    })),
-  },
-  {
-    id: 'presidents',
-    title: 'Group & Choir Presidents',
-    overline: 'Fellowship and worship',
-    description: 'Twelve presidents lead our church groups and choirs in fellowship, worship, and service.',
-    countLabel: '12 presidents',
-    icon: 'groups',
-    gridClass: 'sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4',
-    members: Array.from({ length: 12 }, (_, index) => ({
-      id: `president-${index + 1}`,
-      role: `President ${String(index + 1).padStart(2, '0')}`,
-      name: 'Name to be announced',
-      group: 'Group / choir to be announced',
-    })),
-  },
-];
 
 export default function LeadershipPage() {
   return (
@@ -106,15 +62,15 @@ export default function LeadershipPage() {
             </div>
             <span className="self-start whitespace-nowrap rounded-full bg-navy-50 px-4 py-2 text-sm font-semibold text-navy-800">{section.countLabel}</span>
           </div>
-          <div className={`mt-8 grid gap-5 ${section.gridClass}`}>
+          <div className={`mt-6 grid gap-4 ${section.gridClass} ${section.id === 'pastors' ? 'max-w-3xl' : ''}`}>
             {section.members.map((member) => (
-              <article key={member.id} className="rounded-xl border border-navy-100/60 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-navy-50 text-navy-800">
-                  <Icon name={section.icon} className="text-2xl" />
-                </div>
+              <article key={member.id} className="px-4 py-6 text-center">
+                <LeadershipPortrait src={member.picture} name={member.name} role={member.role} featured={section.id === 'pastors'} />
+                <div className="mt-5">
                 <p className="text-xs font-bold uppercase tracking-wide text-gold-700">{member.role}</p>
                 <h3 className="mt-2 text-lg font-semibold text-navy-900">{member.name}</h3>
                 {'group' in member && <p className="mt-2 text-sm text-ink-variant">{String(member.group)}</p>}
+                </div>
               </article>
             ))}
           </div>

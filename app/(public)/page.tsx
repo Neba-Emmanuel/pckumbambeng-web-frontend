@@ -14,7 +14,7 @@ const serviceSchedule = [
 const fellowships = [
   { img: '/cyf-logo.png', name: 'Christian Youth Fellowship (CYF)', desc: 'Empowering young believers through scripture, leadership, and choral competitions.', meet: 'Tuesday 4:00 PM' },
   { img: '/cwf-logo.jpeg', name: 'Christian Women Fellowship (CWF)', desc: 'The pillar of Congregation prayer, hospitality, benevolence, and community welfare.', meet: 'Tuesdays 4:00 PM' },
-  { img: '/cmf-logo.jpeg', name: 'Christian Men Fellowship (CMF)', desc: 'Men dedicated to godly leadership, stewardship, and mentoring the young.', meet: 'Friday 4:00 PM' },
+  { img: '/cmf-logo.jpeg', name: 'Christian Men Fellowship (CMF)', desc: 'Men dedicated to godly leadership, stewardship, and mentoring the young.', meet: 'Wednesday 4:00 PM' },
   { img: '/lay-training-logo.jpg', name: 'Congregation Choirs & Singing Bands', desc: 'From classical Presbyterian hymns to contemporary African choral praise.', meet: 'Tues - Sat rehearsals' },
 ];
 
@@ -170,29 +170,35 @@ export default function HomePage() {
             <div className="absolute -right-20 -bottom-20 w-96 h-96 rounded-full bg-navy-700/50 blur-3xl pointer-events-none" />
             <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
               <div className="lg:col-span-7">
-                <div className="relative rounded-2xl overflow-hidden aspect-video bg-navy-950 shadow-2xl flex items-center justify-center">
-                  <div className="w-20 h-20 rounded-full bg-gradient-gold text-navy-900 flex items-center justify-center shadow-2xl">
-                    <Icon name="play_arrow" className="text-[42px] ml-1" filled />
-                  </div>
-                  <div className="absolute bottom-3 left-3 px-3 py-1 rounded bg-black/60 text-white text-xs flex items-center gap-1">
-                    <Icon name="fiber_manual_record" className="text-red-500 text-[14px]" />
-                    HD Recording · 44:18 min
-                  </div>
+                <div className="relative rounded-2xl overflow-hidden aspect-video bg-navy-950 shadow-2xl">
+                  <iframe
+                    src="https://www.youtube-nocookie.com/embed/shmUMCq1Z5A"
+                    title="Featured sermon video"
+                    className="absolute inset-0 h-full w-full border-0"
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                  />
                 </div>
               </div>
               <div className="lg:col-span-5 flex flex-col gap-4">
                 <span className="px-3 py-1 rounded bg-gradient-gold text-navy-900 text-xs font-bold uppercase tracking-wider w-fit">
                   Featured Sermon
                 </span>
-                <h3 className="text-2xl font-bold">Faith That Overcomes the Storm</h3>
-                <div className="p-4 rounded-xl bg-white/5 border border-white/10 space-y-1 text-sm">
-                  <div className="flex justify-between"><span className="text-gold-300 font-semibold">Preacher:</span><span>Rev. Congregation Pastor</span></div>
-                  <div className="flex justify-between"><span className="text-gold-300 font-semibold">Scripture:</span><span className="italic">Mark 4:35–41</span></div>
-                </div>
+                <h3 className="text-2xl font-bold">Watch our featured sermon</h3>
                 <p className="text-white/80 leading-relaxed">
-                  &ldquo;Master, do you not care that we are perishing?&rdquo; A timely reminder
-                  that Christ is never asleep to our trials — He commands the wind, and calm returns.
+                  Take a moment to listen, reflect, and grow in faith through God’s Word.
                 </p>
+                <a
+                  href="https://www.youtube.com/watch?v=shmUMCq1Z5A"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-[44px] items-center gap-2 font-semibold text-gold-300 hover:text-gold-200"
+                >
+                  Watch on YouTube <span className="sr-only">(opens in a new tab)</span>
+                  <Icon name="open_in_new" className="text-[18px]" />
+                </a>
                 <Link
                   href="/sermons"
                   className="inline-flex items-center gap-2 text-gold-300 font-semibold hover:text-gold-200 transition-colors mt-1"

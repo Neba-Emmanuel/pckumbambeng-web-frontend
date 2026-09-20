@@ -8,6 +8,7 @@ import Link from 'next/link';
 const API_URL = API_BASE_URL;
 
 interface Announcement {
+  expires_on: string | null;
   id: number;
   title: string;
   published_at: string;
@@ -15,6 +16,9 @@ interface Announcement {
 }
 
 export default function AdminAnnouncementsPage() {
+  const [page, setPage] = useState(1);
+  const [total, setTotal] = useState(0);
+  const [pageSize, setPageSize] = useState(20);
   const [announcements, setAnnouncements] = useState<Announcement[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -23,13 +27,17 @@ export default function AdminAnnouncementsPage() {
   const [deleting, setDeleting] = useState(false);
 
   const fetchAnnouncements = useCallback(async () => {
+    setLoading(true);
+    setError('');
     try {
-      const res = await fetch(`${API_URL}/api/announcements`, {
+      const res = await fetch(`${API_URL}/api/admin/announcements?page=${page}`, {
         credentials: 'include',
       });
       if (res.ok) {
         const data = await res.json();
         setAnnouncements(data.announcements || data.data || []);
+        setTotal(data.meta?.total ?? 0);
+        setPageSize(data.meta?.pageSize ?? 20);
       } else {
         setError('Failed to load announcements');
       }
@@ -38,7 +46,7 @@ export default function AdminAnnouncementsPage() {
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [page]);
 
   useEffect(() => {
     fetchAnnouncements();
@@ -53,7 +61,8 @@ export default function AdminAnnouncementsPage() {
         credentials: 'include',
       });
       if (res.ok) {
-        setAnnouncements((prev) => prev.filter((a) => a.id !== deleteId));
+        if (announcements.length === 1 && page > 1) setPage(p => p - 1);
+        else await fetchAnnouncements();
         setSuccessMessage('Announcement deleted successfully');
         setTimeout(() => setSuccessMessage(''), 3000);
       } else {
@@ -112,6 +121,7 @@ export default function AdminAnnouncementsPage() {
               <tr>
                 <th className="text-left px-4 py-3 text-sm font-medium text-gray-600">Title</th>
                 <th className="text-left px-4 py-3 text-sm font-medium text-gray-600">Published</th>
+                <th className="text-left px-4 py-3 text-sm font-medium text-gray-600">Show until</th>
                 <th className="text-left px-4 py-3 text-sm font-medium text-gray-600">Attachment</th>
                 <th className="text-right px-4 py-3 text-sm font-medium text-gray-600">Actions</th>
               </tr>
@@ -124,6 +134,9 @@ export default function AdminAnnouncementsPage() {
                   </td>
                   <td className="px-4 py-3 text-sm text-gray-500">
                     {new Date(announcement.published_at).toLocaleDateString()}
+                  </td>
+                  <td className="px-4 py-3 text-sm text-gray-500">
+                    {announcement.expires_on ? <><span>{announcement.expires_on}</span><span className="mt-1 block text-xs font-semibold text-navy-700">{announcement.expires_on < new Intl.DateTimeFormat('en-CA', { timeZone: 'Africa/Douala', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date()) ? 'Expired · hidden from public' : 'Active'}</span></> : 'No expiry'}
                   </td>
                   <td className="px-4 py-3 text-sm text-gray-500">
                     {announcement.attachment_path ? (
@@ -158,6 +171,12 @@ export default function AdminAnnouncementsPage() {
       )}
 
       {/* Delete confirmation dialog */}
+      {total > pageSize && <nav aria-label="Announcement pages" className="mt-5 flex items-center justify-between gap-3">
+        <button disabled={page === 1} onClick={() => setPage(p => p - 1)} className="min-h-[44px] rounded-lg bg-navy-50 px-4 font-medium text-navy-900 disabled:opacity-40">Previous</button>
+        <span className="text-sm">Page {page} of {Math.ceil(total / pageSize)}</span>
+        <button disabled={page * pageSize >= total} onClick={() => setPage(p => p + 1)} className="min-h-[44px] rounded-lg bg-navy-50 px-4 font-medium text-navy-900 disabled:opacity-40">Next</button>
+      </nav>}
+
       {deleteId !== null && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-lg shadow-xl max-w-md w-full p-6">

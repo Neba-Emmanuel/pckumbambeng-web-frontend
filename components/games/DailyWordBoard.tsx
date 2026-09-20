@@ -43,6 +43,8 @@ export function DailyWordBoard() {
 
   const load = useCallback(async () => {
     setLoading(true);
+    setError(null);
+    setUnavailable(false);
     try {
       const data = await apiGet<DailyMeta | null>('/api/games/daily-word');
       if (!data) {
@@ -109,7 +111,7 @@ export function DailyWordBoard() {
   }
 
   if (!meta) {
-    return <p className="text-red-600">{error || 'Something went wrong.'}</p>;
+    return <div><p role="alert" className="text-red-700">{error || 'Something went wrong.'}</p><button onClick={load} className="mt-4 min-h-[44px] rounded-xl bg-navy-900 px-5 py-3 text-white">Try again</button></div>;
   }
 
   const rows = [];

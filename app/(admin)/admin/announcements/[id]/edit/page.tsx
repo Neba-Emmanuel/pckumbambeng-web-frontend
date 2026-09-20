@@ -13,6 +13,7 @@ import { z } from 'zod';
 const API_URL = API_BASE_URL;
 
 const announcementSchema = z.object({
+  expires_on: z.union([z.string().date('Choose a valid date'), z.literal('')]).optional(),
   title: z.string().min(1, 'Title is required').max(200, 'Title must be 200 characters or less'),
   body: z.string().min(1, 'Body is required'),
 });
@@ -43,7 +44,7 @@ export default function EditAnnouncementPage() {
   useEffect(() => {
     const fetchAnnouncement = async () => {
       try {
-        const res = await fetch(`${API_URL}/api/announcements/${id}`, {
+        const res = await fetch(`${API_URL}/api/admin/announcements/${id}`, {
           credentials: 'include',
         });
         if (res.ok) {
@@ -52,6 +53,7 @@ export default function EditAnnouncementPage() {
           reset({
             title: announcement.title,
             body: announcement.body,
+            expires_on: announcement.expires_on || '',
           });
           if (announcement.attachment_path) {
             setExistingAttachment(announcement.attachment_path);
@@ -101,6 +103,7 @@ export default function EditAnnouncementPage() {
       const formData = new FormData();
       formData.append('title', data.title);
       formData.append('body', data.body);
+      formData.append('expires_on', data.expires_on || '');
       if (attachment) {
         await appendUpload(formData, 'attachment', attachment);
       }
@@ -173,6 +176,13 @@ export default function EditAnnouncementPage() {
           {errors.body && (
             <p className="mt-1 text-sm text-red-600">{errors.body.message}</p>
           )}
+        </div>
+
+        <div>
+          <label htmlFor="expires_on" className="mb-1 block text-sm font-medium text-gray-700">Show until (optional)</label>
+          <input id="expires_on" type="date" {...register('expires_on')} aria-describedby="expiry-help" className="w-full rounded-lg border border-gray-300 px-3 py-2 focus:ring-2 focus:ring-navy-500" />
+          <p id="expiry-help" className="mt-2 text-sm text-gray-500">Visible through this date in Cameroon time, then automatically hidden. Leave blank to keep it visible. You can still edit expired announcements here.</p>
+          {errors.expires_on && <p className="mt-1 text-sm text-red-600">{errors.expires_on.message}</p>}
         </div>
 
         {/* Attachment */}
