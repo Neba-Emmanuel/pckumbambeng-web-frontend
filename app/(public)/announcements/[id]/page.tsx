@@ -5,6 +5,7 @@ import { API_BASE_URL } from '@/lib/api-base';
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
+import { ContentPage } from '@/components/ContentPage';
 
 const API_URL = API_BASE_URL;
 
@@ -78,7 +79,7 @@ export default function AnnouncementDetailPage() {
             Announcement Not Found
           </h2>
           <p className="mt-2 text-sm text-yellow-700">
-            The announcement you are looking for does not exist or has been removed.
+            The announcement you are looking for does not exist, has expired, or has been removed.
           </p>
           <Link
             href="/announcements"
@@ -112,7 +113,7 @@ export default function AnnouncementDetailPage() {
   }
 
   return (
-    <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
+    <ContentPage title={announcement.title} eyebrow="Congregation announcement" description="News and updates for our church family." icon="campaign">
       <Link
         href="/announcements"
         className="inline-flex items-center text-sm font-medium text-navy-600 hover:text-navy-500"
@@ -120,11 +121,11 @@ export default function AnnouncementDetailPage() {
         ← Back to Announcements
       </Link>
 
-      <article className="mt-6 rounded-lg border border-gray-200 bg-white p-6 shadow-sm sm:p-8">
+      <article className="mx-auto mt-6 max-w-3xl rounded-2xl border border-navy-100 bg-white p-6 shadow-sm sm:p-10">
         <header>
-          <h1 className="text-2xl font-bold text-gray-900 sm:text-3xl">
+          <h2 className="text-2xl font-bold text-navy-900 sm:text-3xl">
             {announcement.title}
-          </h1>
+          </h2>
           <time className="mt-2 block text-sm text-gray-500">
             {new Date(announcement.published_at).toLocaleDateString('en-US', {
               year: 'numeric',
@@ -134,7 +135,7 @@ export default function AnnouncementDetailPage() {
           </time>
         </header>
 
-        <div className="mt-6 whitespace-pre-wrap text-gray-700 leading-relaxed">
+        <div className="mt-6 whitespace-pre-wrap break-words text-gray-700 leading-8">
           {announcement.body}
         </div>
 
@@ -152,6 +153,6 @@ export default function AnnouncementDetailPage() {
           </div>
         )}
       </article>
-    </div>
+    </ContentPage>
   );
 }
