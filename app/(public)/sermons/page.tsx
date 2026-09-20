@@ -2,9 +2,13 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { ContentPage } from '@/components/ContentPage';
+import { PreacherPhoto } from '@/components/PreacherPhoto';
 import { apiGetList } from '@/lib/api-client';
 
 interface Sermon {
+  preacher_image: string | null;
+  text_content: string | null;
   id: number;
   title: string;
   speaker: string;
@@ -43,12 +47,8 @@ export default function SermonsPage() {
   }, [page]);
 
   return (
-    <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
-      <h1 className="text-2xl font-bold text-navy-900 sm:text-3xl">Sermons</h1>
-      <p className="mt-2 text-sm text-gray-600">
-        Browse and listen to church sermons
-      </p>
-
+    <ContentPage title="The Word for everyday life." eyebrow="Listen · Reflect · Grow" description="Revisit a message, meet the preacher, and make space for Scripture throughout your week." icon="auto_stories">
+      <div className="mb-8 flex items-center justify-between gap-4"><h2 className="text-2xl font-bold text-navy-900">Sermon library</h2><span className="rounded-full bg-navy-50 px-4 py-2 text-sm text-navy-700">{total} messages</span></div>
       {error && (
         <div className="mt-6 rounded-md bg-red-50 p-4 text-sm text-red-700" role="alert">
           {error}
@@ -64,44 +64,21 @@ export default function SermonsPage() {
             </div>
           ))}
         </div>
-      ) : sermons.length === 0 ? (
+      ) : error ? null : sermons.length === 0 ? (
         <div className="mt-8 rounded-lg border border-gray-200 bg-white p-8 text-center">
           <p className="text-gray-500">No sermons available at this time.</p>
         </div>
       ) : (
         <>
-          <div className="mt-6 space-y-4">
+          <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {sermons.map((sermon) => (
               <Link
                 key={sermon.id}
                 href={`/sermons/${sermon.id}`}
-                className="block rounded-lg border border-gray-200 bg-white p-4 shadow-sm transition hover:border-navy-300 hover:shadow-md"
+                className="group overflow-hidden rounded-2xl border border-navy-100 bg-white shadow-sm transition hover:border-navy-300 hover:shadow-md"
               >
-                <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-                  <div className="flex-1">
-                    <h2 className="text-lg font-semibold text-navy-900">
-                      {sermon.title}
-                    </h2>
-                    <p className="mt-1 text-sm text-gray-600">
-                      {sermon.speaker} &middot;{' '}
-                      {new Date(sermon.sermon_date).toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric',
-                      })}
-                    </p>
-                  </div>
-
-                  <span
-                    className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${
-                      sermon.content_type === 'audio'
-                        ? 'bg-gold-100 text-gold-800'
-                        : 'bg-navy-100 text-navy-800'
-                    }`}
-                  >
-                    {sermon.content_type === 'audio' ? '🎵 Audio' : '📄 Text'}
-                  </span>
-                </div>
+                <div className="flex items-center gap-4 bg-gradient-to-br from-navy-50 to-gold-50 p-6"><PreacherPhoto path={sermon.preacher_image} name={sermon.speaker} /><div><p className="text-xs font-bold uppercase tracking-widest text-navy-600">The preacher</p><p className="mt-2 font-semibold text-navy-900">{sermon.speaker}</p></div></div>
+                <div className="p-6"><p className="text-xs font-semibold text-gold-700">{new Date(sermon.sermon_date).toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'Africa/Douala' })}</p><h2 className="mt-3 break-words font-serif text-2xl text-navy-900">{sermon.title}</h2><p className="mt-3 line-clamp-3 text-sm leading-relaxed text-gray-600">{sermon.text_content || 'Take a moment to listen and reflect on this message.'}</p><div className="mt-6 flex items-center justify-between gap-2"><span className="rounded-full bg-navy-50 px-3 py-1 text-xs font-semibold text-navy-700">{sermon.content_type === 'audio' ? (sermon.text_content ? 'Audio & text' : 'Audio') : 'Written message'}</span><span className="text-sm font-bold text-navy-900">Open sermon →</span></div></div>
               </Link>
             ))}
           </div>
@@ -131,6 +108,6 @@ export default function SermonsPage() {
           )}
         </>
       )}
-    </div>
+    </ContentPage>
   );
 }

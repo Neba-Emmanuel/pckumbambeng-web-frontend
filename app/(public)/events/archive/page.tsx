@@ -4,6 +4,7 @@ import { EventPageLink, EventPageSettings } from '@/components/EventPageLink';
 
 import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
+import { ContentPage } from '@/components/ContentPage';
 import { apiGetList } from '@/lib/api-client';
 
 interface ArchiveEvent extends EventPageSettings {
@@ -54,22 +55,7 @@ export default function EventsArchivePage() {
   };
 
   return (
-    <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900">Past Events</h1>
-          <p className="mt-1 text-sm text-gray-600">
-            Archive of past church events
-          </p>
-        </div>
-        <Link
-          href="/events"
-          className="rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 min-h-[44px] flex items-center"
-        >
-          ← Back to Calendar
-        </Link>
-      </div>
-
+    <ContentPage title="Moments we shared." eyebrow="Our event archive" description="Look back on the gatherings, celebrations, and fellowship that bring our congregation together." icon="history" action={<Link href="/events" className="inline-flex min-h-[44px] items-center font-semibold text-gold-200">← Back to events</Link>}>
       {isLoading && (
         <div className="mt-8 text-center text-gray-500">Loading past events...</div>
       )}
@@ -88,10 +74,10 @@ export default function EventsArchivePage() {
 
       {!isLoading && !error && events.length > 0 && (
         <>
-          <ul className="mt-6 divide-y divide-gray-200 rounded-lg border border-gray-200 bg-white shadow-sm">
+          <ul className="mt-6 grid gap-5 md:grid-cols-2">
             {events.map((event) => (
-              <li key={event.id} className="px-6 py-4">
-                <h2 className="text-lg font-medium text-gray-900">{event.title}</h2>
+              <li key={event.id} className="rounded-2xl border border-navy-100 bg-white p-6 shadow-sm">
+                <h2 className="font-serif text-2xl text-navy-900">{event.title}</h2>
                 <EventPageLink event={event} />
                 <div className="mt-1 flex flex-wrap gap-x-4 text-sm text-gray-500">
                   <span>
@@ -131,6 +117,6 @@ export default function EventsArchivePage() {
           )}
         </>
       )}
-    </div>
+    </ContentPage>
   );
 }
