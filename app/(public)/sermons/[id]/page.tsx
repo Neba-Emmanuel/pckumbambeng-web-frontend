@@ -7,6 +7,7 @@ import { ContentPage } from '@/components/ContentPage';
 import { PreacherPhoto } from '@/components/PreacherPhoto';
 import { apiGet, ApiError } from '@/lib/api-client';
 import SermonPlayer from '@/components/SermonPlayer';
+import { SermonText } from '@/components/SermonText';
 
 interface SermonDetail {
   preacher_image: string | null;
@@ -84,6 +85,6 @@ export default function SermonDetailPage() {
 
   return <ContentPage title={sermon.title} eyebrow="Sermon · PC Kumba-Mbeng" description="Listen with an open heart. Return to the message throughout your week." icon="auto_stories" action={<Link href="/sermons" className="inline-flex min-h-[44px] items-center font-semibold text-gold-200">← All sermons</Link>}>
     <div className="grid items-start gap-8 lg:grid-cols-[280px_1fr]"><aside className="rounded-2xl border border-navy-100 bg-white p-6"><PreacherPhoto path={sermon.preacher_image} name={sermon.speaker} /><p className="mt-5 text-xs font-bold uppercase tracking-widest text-gold-700">Preached by</p><h2 className="mt-2 text-xl font-bold text-navy-900">{sermon.speaker}</h2><p className="mt-3 text-sm text-gray-600">{new Date(sermon.sermon_date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Africa/Douala' })}</p><p className="mt-6 border-t border-navy-100 pt-5 text-sm leading-relaxed text-gray-600">Make space to reflect: what will you carry from this message into your week?</p></aside>
-    <div className="min-w-0 space-y-6">{sermon.content_type === 'audio' && <SermonPlayer sermonId={sermon.id} title={sermon.title} speaker={sermon.speaker} />}{sermon.text_content ? <article className="rounded-2xl border border-navy-100 bg-white p-6 sm:p-10"><h2 className="mb-6 font-serif text-2xl text-navy-900">The message</h2><div className="whitespace-pre-wrap break-words text-base leading-8 text-gray-700">{sermon.text_content}</div></article> : sermon.content_type !== 'audio' && <p>No content available for this sermon.</p>}</div></div>
+    <div className="min-w-0 space-y-6">{sermon.content_type === 'audio' && <SermonPlayer sermonId={sermon.id} title={sermon.title} speaker={sermon.speaker} />}{sermon.text_content ? <article className="rounded-2xl border border-navy-100 bg-white p-6 sm:p-10"><h2 className="mb-6 font-serif text-2xl text-navy-900">The message</h2><SermonText text={sermon.text_content} /></article> : sermon.content_type !== 'audio' && <p>No content available for this sermon.</p>}</div></div>
   </ContentPage>;
 }

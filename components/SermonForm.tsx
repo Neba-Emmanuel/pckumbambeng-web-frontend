@@ -6,6 +6,7 @@ import { API_BASE_URL } from '@/lib/api-base';
 import { appendUpload } from '@/lib/upload-file';
 import { apiGet } from '@/lib/api-client';
 import { PreacherPhoto } from './PreacherPhoto';
+import { SermonEditor } from './SermonEditor';
 
 const input = 'mt-2 w-full rounded-xl border border-navy-100 bg-white px-4 py-3 text-navy-900 focus:outline-none focus:ring-2 focus:ring-navy-500';
 type SermonData = { preacher_id?: number | null; title: string; speaker: string; sermon_date: string; content_type: 'audio' | 'text'; text_content: string | null; preacher_image?: string | null; audio_path?: string | null };
@@ -54,7 +55,7 @@ export function SermonForm({ id }: { id?: string }) {
     <label className="block font-semibold">Sermon date<input className={input} type="date" required value={data.sermon_date} onChange={e => setData({ ...data, sermon_date: e.target.value })} /></label>
     <label className="block font-semibold">Format<select className={input} value={data.content_type} onChange={e => setData({ ...data, content_type: e.target.value as 'audio' | 'text' })}><option value="text">Written sermon</option><option value="audio">Audio recording with optional text</option></select></label>
     {data.content_type === 'audio' && <label className="block font-semibold">Audio recording<input type="file" className="mt-3 block w-full text-sm" accept="audio/mpeg,audio/wav,.mp3,.wav" onChange={e => { const file = e.target.files?.[0]; if (!file) { setAudio(null); return; } if (!['audio/mpeg', 'audio/mp3', 'audio/wav', 'audio/wave', 'audio/x-wav'].includes(file.type) || file.size > 100 * 1024 * 1024) { setAudio(null); e.target.value = ''; setError('Choose an MP3 or WAV recording up to 100 MB.'); return; } setAudio(file); setError(''); }} /><span className="mt-2 block text-xs font-normal text-gray-600">MP3 or WAV · Maximum 100 MB{data.audio_path ? ' · Leave empty to keep the current recording.' : ''}</span></label>}
-    <label className="block font-semibold">Sermon text {data.content_type === 'audio' ? '(optional)' : ''}<textarea className={`${input} min-h-[260px] font-normal leading-relaxed`} required={data.content_type === 'text'} maxLength={100000} value={data.text_content || ''} onChange={e => setData({ ...data, text_content: e.target.value })} placeholder="Scripture reading, sermon message, and reflections…" /><span className="mt-2 block text-xs font-normal text-gray-600">Paragraph breaks are preserved on the public sermon page.</span></label>
+    <SermonEditor value={data.text_content || ''} onChange={text_content => setData({ ...data, text_content })} required={data.content_type === 'text'} />
     <div className="flex gap-4"><button className="min-h-[48px] rounded-xl bg-navy-900 px-6 py-3 font-semibold text-white" type="submit">{busy ? 'Saving…' : 'Save sermon'}</button><button type="button" className="min-h-[48px] px-4 text-navy-700" onClick={() => router.push('/admin/sermons')}>Cancel</button></div>
   </fieldset></form>}</div>;
 }
