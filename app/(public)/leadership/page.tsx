@@ -1,7 +1,16 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { Icon } from "@/components/Icon";
 import { LeadershipPortrait } from "@/components/LeadershipPortrait";
 import leadershipSections from "../data";
+import { pageMetadata } from "@/lib/site";
+
+export const metadata: Metadata = pageMetadata({
+  title: "Leadership",
+  description:
+    "Meet the pastors, elders and fellowship leaders serving PC Kumba-Mbeng.",
+  path: "/leadership",
+});
 
 export default function LeadershipPage() {
   return (

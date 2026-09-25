@@ -1,6 +1,56 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import type { Metadata } from 'next';
 import { Icon } from '@/components/Icon';
+import { pageMetadata, SITE_URL, absoluteUrl } from '@/lib/site';
+
+export const metadata: Metadata = pageMetadata({
+  title: 'PC Kumba-Mbeng — Presbyterian Church in Cameroon, Kumba-Mbeng',
+  absoluteTitle: true,
+  description:
+    'Presbyterian Church in Cameroon — Kumba-Mbeng Congregation. Worship with us Sundays at 7:00 AM and 9:30 AM, explore sermons, events, fellowship and church news in Kumba, Cameroon.',
+  path: '/',
+});
+
+const churchJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Church',
+  name: 'PC Kumba-Mbeng',
+  alternateName: 'Presbyterian Church in Cameroon — Kumba-Mbeng Congregation',
+  url: SITE_URL,
+  logo: absoluteUrl('/pcc-logo.png'),
+  image: absoluteUrl('/hero-banner.png'),
+  description:
+    'Presbyterian Church in Cameroon — Kumba-Mbeng Congregation, serving Kumba Presbytery with Sunday worship, Bible study and fellowship ministries.',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Kumba-Mbeng, Kumba',
+    addressCountry: 'CM',
+  },
+  worshipLocation: {
+    '@type': 'Place',
+    name: 'PC Kumba-Mbeng',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Kumba-Mbeng, Kumba',
+      addressCountry: 'CM',
+    },
+  },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Sunday'],
+      opens: '07:00',
+      closes: '11:00',
+    },
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Thursday'],
+      opens: '16:00',
+      closes: '17:30',
+    },
+  ],
+};
 
 const serviceSchedule = [
   { icon: 'wb_sunny', title: '1st Divine Worship', detail: 'English & Choral Liturgy', time: '7:00 AM' },
@@ -21,6 +71,10 @@ const fellowships = [
 export default function HomePage() {
   return (
     <div className="overflow-hidden">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(churchJsonLd) }}
+      />
       {/* ── Hero ─────────────────────────────────────────────────────── */}
       <section className="relative bg-gradient-hero">
         <Image

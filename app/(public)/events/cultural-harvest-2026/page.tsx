@@ -5,17 +5,15 @@ import { Icon } from "@/components/Icon";
 import { HarvestDetails, ShareHarvest } from "./HarvestDetails";
 import styles from "./harvest.module.css";
 import { HarvestCard } from "./HarvestCard";
+import { pageMetadata } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Cultural Harvest 2026 | PC Kumba-Mbeng",
+export const metadata: Metadata = pageMetadata({
+  title: "Cultural Harvest 2026",
   description:
-    "A celebration of faith, heritage and thanksgiving. Join Cultural Harvest 2026 at Presbyterian Church Kumba-Mbeng.",
-  openGraph: {
-    title: "Cultural Harvest 2026 · PC Kumba-Mbeng",
-    description: "Filled with the bread of Life... We will give with joyful hearts. John 6:30–35.",
-    type: "website",
-  },
-};
+    "A celebration of faith, heritage and thanksgiving. Join Cultural Harvest 2026 at Presbyterian Church Kumba-Mbeng — filled with the bread of Life, we will give with joyful hearts.",
+  path: "/events/cultural-harvest-2026",
+  imageAlt: "Cultural Harvest 2026 — PC Kumba-Mbeng",
+});
 
 function HarvestArtwork() {
   return (
