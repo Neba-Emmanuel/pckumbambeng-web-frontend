@@ -65,7 +65,7 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
             </div>
             <div className="hidden md:flex items-center gap-3 shrink-0">
               <span className="text-gold-300 font-semibold">Motto:</span>
-              <span className="italic">Pacesetters</span>
+              <span className="italic">Pacesetters Kumba-Mbeng</span>
             </div>
           </div>
         </div>
@@ -191,7 +191,7 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
       <div aria-hidden="true" className="shrink-0" style={{ height: headerHeight }} />
 
       {/* Anonymous push opt-in banner */}
-      {showPushPrompt && (
+      {/* {showPushPrompt && (
         <div className="bg-navy-50 border-b border-gold-200/60 px-4 py-3 flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-3">
             <Icon name="notifications" className="text-navy-700 text-[22px]" />
@@ -214,7 +214,7 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
             </button>
           </div>
         </div>
-      )}
+      )} */}
 
       <main className="flex-1">{children}</main>
 
@@ -238,7 +238,7 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
                   Our Sacred Motto
                 </span>
                 <p className="italic text-white/90 mt-1">Pacesetters</p>
-                <span className="text-xs text-white/50">The Burning Bush — Unconsumed</span>
+                <span className="text-xs text-white/50">The Pacesetting setting congregation</span>
               </div>
             </div>
 
@@ -285,7 +285,7 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
                 </li>
                 <li className="flex justify-between gap-2">
                   <span>Bible Study (Thurs)</span>
-                  <span className="text-white">5:00 PM</span>
+                  <span className="text-white">4:00 PM</span>
                 </li>
                 {/* <li className="flex justify-between gap-2">
                   <span>Prayers (Fri)</span>

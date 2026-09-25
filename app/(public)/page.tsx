@@ -6,7 +6,7 @@ const serviceSchedule = [
   { icon: 'wb_sunny', title: '1st Divine Worship', detail: 'English & Choral Liturgy', time: '7:00 AM' },
   { icon: 'auto_stories', title: 'Sunday School', detail: 'Children & Youth Classes', time: '7:00 AM & 9:30AM' },
   { icon: 'church', title: '2nd Divine Worship', detail: 'Main Congregation Assembly', time: '9:30 AM' },
-  { icon: 'menu_book', title: 'Thursday Bible Study', detail: 'Verse-by-verse Scripture', time: '5:00 PM' },
+  { icon: 'menu_book', title: 'Thursday Bible Study', detail: 'Verse-by-verse Scripture', time: '4:00 PM' },
   // { icon: 'volunteer_activism', title: 'Friday Fasting & Prayer', detail: 'Healing & Deliverance', time: '4:30 PM' },
   { icon: 'diversity_3', title: 'Fellowship Gatherings', detail: 'CYF · CWF · CMF · Choir', time: 'Weekly' },
 ];
