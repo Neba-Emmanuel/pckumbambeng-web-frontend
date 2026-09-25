@@ -224,7 +224,7 @@ export function HarvestCard() {
       ctx.fillText(value, 540, y);
     };
     titleLine('CULTURAL', 303);
-    titleLine('HARVEST', 430);
+    titleLine('JAMBOREE', 430);
 
     // Amber pill, echoing the flyer's date badge
     ctx.save();
