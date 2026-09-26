@@ -78,7 +78,7 @@ const leadershipSections = [
         id: 'elder-8',
         role: 'CYF/Youth of the Cong. & Doctrine Classes Elder',
         name: 'Elder Ojong Dorothy Nsonya',
-        picture: '/elders/elder-5.jpg',
+        picture: '/ojong-dorothy.jpeg',
     },
     {
         id: 'elder-9',
