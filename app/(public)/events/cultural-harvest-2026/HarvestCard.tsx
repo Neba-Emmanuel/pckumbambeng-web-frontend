@@ -385,7 +385,7 @@ export function HarvestCard() {
     // ===== Footer, with a small pin mark before the reference like the
     // flyer's location line =====
     text('Filled with the bread of Life...', 959, 30, TEAL, 'Georgia', 'italic');
-    text('We will give with joyful hearts.', 997, 30, TEAL, 'Georgia', 'italic');
+    text('We give with joyful hearts.', 997, 30, TEAL, 'Georgia', 'italic');
 
     ctx.save();
     ctx.fillStyle = AMBER;
@@ -583,7 +583,7 @@ export function HarvestCard() {
             role="img"
             aria-label={`Cultural Harvest 2026 I’ll be there card for ${
               name.trim() || 'your name'
-            }, decorated with traditional drums and a bronze gong. Filled with the bread of Life... We will give with joyful hearts. John 6:30–35.`}
+            }, decorated with traditional drums and a bronze gong. Filled with the bread of Life... We give with joyful hearts. John 6:30–35.`}
             className="h-auto w-full rounded-sm shadow-xl"
           />
           <p className="mt-4 text-center text-sm text-[#535361]">
